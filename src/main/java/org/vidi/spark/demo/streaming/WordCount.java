@@ -12,15 +12,14 @@ import java.util.Arrays;
 
 /**
  * @author vidi
- * @date 2019-03-28
  */
 public class WordCount {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         SparkConf conf = new SparkConf()
                 .setAppName("JavaStreamingWordCount")
                 .setMaster("local[2]");
 
-        // 美妙接受一个 batch
+        // 每秒接受一个 batch
         JavaStreamingContext jssc = new JavaStreamingContext(conf, Durations.seconds(1));
 
         JavaReceiverInputDStream<String> lines = jssc.socketTextStream("localhost", 9999);
